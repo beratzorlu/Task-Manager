@@ -10,7 +10,9 @@ def home():
 
 @app.route("/categories")
 def categories():
-    return render_template("categories.html")
+    categories = list(Category.query.order_by(Category.category_name).all()) # cursor object
+    return render_template("categories.html", categories=categories)
+
 
 # by default the normal method is GET
 @app.route("/add_category", methods=["GET", "POST"])
